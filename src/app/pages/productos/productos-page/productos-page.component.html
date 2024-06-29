@@ -1,0 +1,45 @@
+<div class="card">
+  <div class="card-header">
+    <h2 class="card-title text-center" style="color: blueviolet">Productos</h2>
+  </div>
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Categoría</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td>{{ product.id }}</td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.description }}</td>
+          <td>{{ product.category.name }}</td>
+          <td class="d-flex gap-2 justify-content-start">
+            <a
+              class="btn btn-primary"
+              [routerLink]="['./edit/', product.id]"
+            >
+              Editar
+            </a>
+            <button
+              class="btn btn-danger"
+              (click)="onDeleteProduct(product.id)"
+            >
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer d-flex d-flex justify-content-center">
+    <a class="btn btn-outline-primary" [routerLink]="['/new-product']">
+      Añadir nuevo producto
+    </a>
+  </div>
+</div>

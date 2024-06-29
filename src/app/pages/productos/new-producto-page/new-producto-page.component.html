@@ -1,0 +1,80 @@
+<div class="card">
+  <div class="card-header">
+    <h2 class="card-title text-center" style="color: blueviolet">
+      {{ currentProduct.id ? currentProduct.name : 'Nuevo producto' }}
+    </h2>
+  </div>
+  <div class="card-body">
+    <form class="row p-4 row-gap-3" [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <!-- Nombre del producto -->
+      <div class="col-12 p-0">
+        <label for="categoryName" class="form-label">Nombre del producto</label>
+        <input
+          type="text"
+          class="form-control"
+          id="categoryName"
+          placeholder="Hogar..."
+          formControlName="name"
+        />
+      </div>
+
+      <!-- Descripción del producto -->
+      <div class="col-12 p-0">
+        <label for="categoryDescription" class="form-label">Descripción</label>
+        <textarea
+          class="form-control"
+          rows="2"
+          id="categoryDescription"
+          placeholder="Producto mágico para el hogar..."
+          formControlName="description"
+        ></textarea>
+      </div>
+
+      <!-- Precio del producto -->
+      <div class="col-12 p-0">
+        <label for="categoryPrice" class="form-label">Precio del producto</label>
+        <input
+          type="number"
+          class="form-control"
+          id="categoryPrice"
+          placeholder="100"
+          formControlName="price"
+        />
+      </div>
+
+      <!-- Stock del producto -->
+      <div class="col-12 p-0">
+        <label for="categoryStock" class="form-label">Stock del producto</label>
+        <input
+          type="number"
+          class="form-control"
+          id="categoryStock"
+          placeholder="10"
+          formControlName="stock"
+        />
+      </div>
+
+      <!-- Categoría -->
+      <div class="col-12 p-0">
+        <label for="productCategory" class="form-label">Categoría</label>
+        <select
+          id="productCategory"
+          class="form-select"
+          aria-label="Default select example"
+          formControlName="category"
+          [compareWith]="compareCategoryObjects"
+        >
+          <option disabled selected [ngValue]="null">Selecctiona una categoría</option>
+          <option *ngFor="let category of categories" [ngValue]="category">
+            {{ category.name }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Botón para guardar/editar el producto -->
+      <button class="btn btn-primary mt-4 col-12">
+        {{ currentProduct.id ? 'Actualizar' : 'Guardar' }} producto
+      </button>
+    </form>
+  </div>
+</div>
